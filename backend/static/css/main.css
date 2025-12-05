@@ -93,6 +93,59 @@ body {
   gap: 1.5rem;
 }
 
+.estimator-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.estimator-grid label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: #fef3f2;
+}
+
+.estimator input[type="range"] {
+  accent-color: #f97316;
+}
+
+.slider-value {
+  font-size: 0.8rem;
+  color: #fff;
+  opacity: 0.9;
+}
+
+.estimator-output {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.estimator-output article {
+  border-radius: 0.85rem;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  text-align: center;
+}
+
+.estimator-output p {
+  margin: 0;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.estimator-output strong {
+  display: block;
+  margin-top: 0.4rem;
+  font-size: 1.4rem;
+}
+
 .panel {
   background: #fff;
   border-radius: 1rem;
@@ -101,6 +154,15 @@ body {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+}
+
+.panel.estimator {
+  background: linear-gradient(135deg, #6a0f1d, #9c2233);
+  color: #fff;
+}
+
+.panel.estimator .panel-header p {
+  color: rgba(255, 255, 255, 0.85);
 }
 
 .panel-header {
@@ -232,6 +294,65 @@ th {
 
 tbody tr:hover {
   background: #f9fafb;
+}
+
+#employee-body .action-buttons {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.action-btn {
+  border: none;
+  background: transparent;
+  color: #2563eb;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+}
+
+.action-btn.delete {
+  color: #b42318;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal.open {
+  display: flex;
+}
+
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.6);
+}
+
+.modal-dialog {
+  position: relative;
+  background: #fff;
+  border-radius: 1rem;
+  width: min(640px, 95vw);
+  padding: 1.5rem;
+  box-shadow: 0 30px 60px rgba(15, 23, 42, 0.35);
+  z-index: 1;
+}
+
+.modal-close {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  border: none;
+  background: transparent;
+  font-size: 1.75rem;
+  cursor: pointer;
+  line-height: 1;
 }
 
 #employee-search {

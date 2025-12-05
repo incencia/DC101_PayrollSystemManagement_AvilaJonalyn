@@ -118,6 +118,52 @@
   </article>
 </section>
 
+<section class="panel estimator" id="estimator-panel">
+  <div class="panel-header">
+    <div>
+      <h3>Quick Payroll Estimator</h3>
+      <p>Adjust the sliders to preview gross, deductions, and net pay instantly.</p>
+    </div>
+  </div>
+  <div class="estimator-grid">
+    <label>
+      Hourly Rate (₱)
+      <input type="number" id="est-hourly" min="0" step="1" value="400" />
+    </label>
+    <label>
+      Hours Worked
+      <input type="range" id="est-hours" min="0" max="80" value="40" />
+      <span class="slider-value" id="est-hours-value">40 hrs</span>
+    </label>
+    <label>
+      Tax Rate (%)
+      <input type="range" id="est-tax" min="0" max="30" value="12" />
+      <span class="slider-value" id="est-tax-value">12%</span>
+    </label>
+    <label>
+      Other Deductions (₱)
+      <input type="number" id="est-deductions" min="0" step="100" value="500" />
+    </label>
+  </div>
+  <div class="estimator-output">
+    <article>
+      <p>Gross Pay</p>
+      <strong id="est-gross">₱0.00</strong>
+    </article>
+    <article>
+      <p>Taxes</p>
+      <strong id="est-tax-amount">₱0.00</strong>
+    </article>
+    <article>
+      <p>Net Pay</p>
+      <strong id="est-net">₱0.00</strong>
+    </article>
+  </div>
+  <p class="form-hint">
+    This interactive tool runs purely in JavaScript and helps you explain deductions during demonstrations.
+  </p>
+</section>
+
 <section class="panel">
   <div class="panel-header">
     <div>
@@ -157,12 +203,58 @@
           <th>Department</th>
           <th>Base Rate</th>
           <th>Type</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody id="employee-body"></tbody>
     </table>
   </div>
 </section>
+
+<div class="modal" id="employee-modal" aria-hidden="true">
+  <div class="modal-backdrop" data-modal-dismiss></div>
+  <div class="modal-dialog">
+    <button class="modal-close" type="button" data-modal-dismiss>&times;</button>
+    <h3>Edit Employee</h3>
+    <form id="employee-edit-form" class="form-grid">
+      <input type="hidden" name="id" />
+      <label>
+        First Name
+        <input type="text" name="first_name" required />
+      </label>
+      <label>
+        Last Name
+        <input type="text" name="last_name" required />
+      </label>
+      <label>
+        Email
+        <input type="email" name="email" required />
+      </label>
+      <label>
+        Base Rate (per hour)
+        <input type="number" name="base_rate" step="0.01" min="0" required />
+      </label>
+      <label>
+        Department
+        <select name="department_id" required></select>
+      </label>
+      <label>
+        Employment Type
+        <select name="employment_type" required>
+          <option value="FULL_TIME">Full-time</option>
+          <option value="PART_TIME">Part-time</option>
+          <option value="CONTRACT">Contract</option>
+        </select>
+      </label>
+      <label>
+        Hire Date
+        <input type="date" name="hire_date" required />
+      </label>
+      <button type="submit" class="primary">Update Employee</button>
+      <p class="form-hint" id="employee-edit-feedback"></p>
+    </form>
+  </div>
+</div>
 
 <section class="panel">
   <div class="panel-header">
