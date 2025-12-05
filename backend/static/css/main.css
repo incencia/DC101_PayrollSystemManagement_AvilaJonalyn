@@ -296,65 +296,6 @@ tbody tr:hover {
   background: #f9fafb;
 }
 
-#employee-body .action-buttons {
-  display: flex;
-  gap: 0.4rem;
-  flex-wrap: wrap;
-}
-
-.action-btn {
-  border: none;
-  background: transparent;
-  color: #2563eb;
-  font-weight: 600;
-  cursor: pointer;
-  padding: 0;
-}
-
-.action-btn.delete {
-  color: #b42318;
-}
-
-.modal {
-  position: fixed;
-  inset: 0;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-}
-
-.modal.open {
-  display: flex;
-}
-
-.modal-backdrop {
-  position: absolute;
-  inset: 0;
-  background: rgba(15, 23, 42, 0.6);
-}
-
-.modal-dialog {
-  position: relative;
-  background: #fff;
-  border-radius: 1rem;
-  width: min(640px, 95vw);
-  padding: 1.5rem;
-  box-shadow: 0 30px 60px rgba(15, 23, 42, 0.35);
-  z-index: 1;
-}
-
-.modal-close {
-  position: absolute;
-  top: 0.75rem;
-  right: 0.75rem;
-  border: none;
-  background: transparent;
-  font-size: 1.75rem;
-  cursor: pointer;
-  line-height: 1;
-}
-
 #employee-search {
   min-width: 220px;
 }
