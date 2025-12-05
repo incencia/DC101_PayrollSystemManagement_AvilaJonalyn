@@ -1,0 +1,191 @@
+{% extends "base.html" %}
+
+{% block title %}Payroll Dashboard{% endblock %}
+
+{% block content %}
+<section class="cards" id="summary-cards">
+  <article class="card">
+    <p class="label">Employees</p>
+    <h2 id="metric-employees">0</h2>
+  </article>
+  <article class="card">
+    <p class="label">Departments</p>
+    <h2 id="metric-departments">0</h2>
+  </article>
+  <article class="card">
+    <p class="label">Net Payroll (₱)</p>
+    <h2 id="metric-payroll">0.00</h2>
+  </article>
+  <article class="card">
+    <p class="label">Pay Periods</p>
+    <h2 id="metric-periods">0</h2>
+  </article>
+</section>
+
+<section class="grid">
+  <article class="panel">
+    <div class="panel-header">
+      <div>
+        <h3>Register Employee</h3>
+        <p>Add new team members with their base rate.</p>
+      </div>
+    </div>
+    <form id="employee-form" class="form-grid">
+      <label>
+        First Name
+        <input type="text" name="first_name" required />
+      </label>
+      <label>
+        Last Name
+        <input type="text" name="last_name" required />
+      </label>
+      <label>
+        Email
+        <input type="email" name="email" required />
+      </label>
+      <label>
+        Base Rate (per hour)
+        <input type="number" name="base_rate" step="0.01" min="0" required />
+      </label>
+      <label>
+        Department
+        <select name="department_id" id="department-select" required></select>
+      </label>
+      <label>
+        Employment Type
+        <select name="employment_type" required>
+          <option value="FULL_TIME">Full-time</option>
+          <option value="PART_TIME">Part-time</option>
+          <option value="CONTRACT">Contract</option>
+        </select>
+      </label>
+      <label>
+        Hire Date
+        <input type="date" name="hire_date" required />
+      </label>
+      <button type="submit" class="primary">Save Employee</button>
+      <p class="form-hint" id="employee-feedback"></p>
+    </form>
+  </article>
+
+  <article class="panel">
+    <div class="panel-header">
+      <div>
+        <h3>Log Payroll</h3>
+        <p>Compute pay with tax and deductions.</p>
+      </div>
+    </div>
+    <form id="payroll-form" class="form-grid">
+      <label>
+        Employee
+        <select name="employee_id" id="payroll-employee" required></select>
+      </label>
+      <label>
+        Period Label
+        <input type="text" name="period_label" placeholder="Week 48 - 2025" required />
+      </label>
+      <label>
+        Start Date
+        <input type="date" name="period_start" required />
+      </label>
+      <label>
+        End Date
+        <input type="date" name="period_end" required />
+      </label>
+      <label>
+        Hours Worked
+        <input type="number" name="hours_worked" step="0.01" min="0" required />
+      </label>
+      <label>
+        Hourly Rate (optional)
+        <input type="number" name="hourly_rate" step="0.01" min="0" />
+      </label>
+      <label>
+        Tax Rate (e.g. 0.12)
+        <input type="number" name="tax_rate" step="0.01" min="0" max="1" value="0.12" />
+      </label>
+      <label>
+        Other Deductions
+        <input type="number" name="other_deductions" step="0.01" min="0" value="0" />
+      </label>
+      <label class="full">
+        Notes
+        <textarea name="notes" rows="2"></textarea>
+      </label>
+      <button type="submit" class="primary">Record Payroll</button>
+      <p class="form-hint" id="payroll-feedback"></p>
+    </form>
+  </article>
+</section>
+
+<section class="panel">
+  <div class="panel-header">
+    <div>
+      <h3>Departments</h3>
+      <p>Create departments and see how many employees belong to each.</p>
+    </div>
+  </div>
+  <form id="department-form" class="form-grid">
+    <label>
+      Department Name
+      <input type="text" name="name" required />
+    </label>
+    <label>
+      Description
+      <input type="text" name="description" />
+    </label>
+    <button type="submit" class="primary">Add Department</button>
+    <p class="form-hint" id="department-feedback"></p>
+  </form>
+  <ul id="department-list" class="chip-list"></ul>
+</section>
+
+<section class="panel">
+  <div class="panel-header">
+    <div>
+      <h3>Employee Directory</h3>
+      <p>Search and filter all active employees.</p>
+    </div>
+    <input type="search" id="employee-search" placeholder="Search employees..." />
+  </div>
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Department</th>
+          <th>Base Rate</th>
+          <th>Type</th>
+        </tr>
+      </thead>
+      <tbody id="employee-body"></tbody>
+    </table>
+  </div>
+</section>
+
+<section class="panel">
+  <div class="panel-header">
+    <div>
+      <h3>Recent Payroll Records</h3>
+      <p>Track processed payouts and verify totals.</p>
+    </div>
+  </div>
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Employee</th>
+          <th>Period</th>
+          <th>Hours</th>
+          <th>Gross (₱)</th>
+          <th>Net (₱)</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody id="payroll-body"></tbody>
+    </table>
+  </div>
+</section>
+{% endblock %}
+
